@@ -48,13 +48,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/btn_resume">
+        android:layout_below="@+id/btn_resume"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
-            android:text="asdasdas"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"/>
 
@@ -62,14 +61,11 @@
             android:id="@+id/tv_bytes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fdsfd"
             android:layout_marginRight="10dp"/>
 
         <TextView
             android:id="@+id/tv_progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fdsfd"
-            />
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>

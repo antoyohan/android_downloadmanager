@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.media.downloadmanager.DownloadManager;
 import com.media.downloadmanager.DownloadService;
-import com.media.downloadmanager.interfaces.DownloadStatusListener;
 import com.media.downloadmanager.application.ApplicationClass;
+import com.media.downloadmanager.interfaces.DownloadStatusListener;
 import com.media.downloadmanager.model.DownloadRequest;
 
-import java.io.File;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,9 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void startDownload() {
         String destinationPath = getDestinationPath();
-        //createFile(destinationPath);
-        //DownloadRequest req = new DownloadRequest("6", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp6", false, destinationPath);
-        DownloadRequest req = new DownloadRequest("6", "http://rcpems02.cdnsrv.ril.com/vod.hdi.cdn.ril.com/n18preprod/entry/data/91/46/5ffaa860accb11e6b8059555631ad42b_V0_364.mp4", false, destinationPath);
+        DownloadRequest req = new DownloadRequest("6", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp6",
+                false, destinationPath, getCurrentTimeStamp());
         Log.d(TAG, "path " + destinationPath);
         DownloadManager.getInstance(this).add(req);
         DownloadManager.getInstance(this).setDownloadStatusListener(new DownloadStatusListener() {
@@ -104,20 +103,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void createFile(String destinationPath) {
-        File file = new File(destinationPath);
-        if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.d(TAG, "path " + "exception caught");
-            }
-        }
+    private long getCurrentTimeStamp() {
+        return Long.parseLong(new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date()));
     }
 
     public String getDestinationPath() {
-        return Environment.getExternalStorageDirectory() + "/Downloadded/" + "test6.mp4";
+        return Environment.getExternalStorageDirectory() + "/Downloaded/" + "test6.mp4";
     }
 }
