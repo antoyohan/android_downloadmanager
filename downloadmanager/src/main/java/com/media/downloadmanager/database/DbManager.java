@@ -2,12 +2,14 @@ package com.media.downloadmanager.database;
 
 import android.util.Log;
 
+import com.media.downloadmanager.application.ApplicationClass;
 import com.media.downloadmanager.interfaces.IDownloadState;
 import com.media.downloadmanager.model.DownloadRequest;
 
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
@@ -20,6 +22,7 @@ public class DbManager {
     private static final String TAG = DbManager.class.getName();
 
     private DbManager() {
+        initRealm();
     }
 
     public static DbManager getInstance() {
@@ -27,6 +30,12 @@ public class DbManager {
             sManagerInstance = new DbManager();
         }
         return sManagerInstance;
+    }
+
+    private void initRealm() {
+        RealmConfiguration config = new RealmConfiguration.Builder(ApplicationClass.getContext())
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     /**
