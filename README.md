@@ -1,2 +1,2 @@
 # android_downloadmanager
-Sample project for downloading http stream into local memory
+Sample android project for downloading http stream into local memory
