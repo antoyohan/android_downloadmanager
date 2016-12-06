@@ -77,10 +77,12 @@ public class DownloadRequestQueue {
             Log.d(TAG, "adding new request 1 " + request.getArticleId());
             if (request.isDownloadOnWiFi()) {
                 if (sIsConnectedToWifi) {
+                    request.setPriority(DownloadRequest.Priority.NORMAL);
                     mDownloadQueue.add(request);
                     mDownloadQueueList.add(request);
                 }
             } else {
+                request.setPriority(DownloadRequest.Priority.NORMAL);
                 mDownloadQueue.add(request);
                 mDownloadQueueList.add(request);
             }
@@ -93,7 +95,7 @@ public class DownloadRequestQueue {
      *
      * @param request Download request to be added
      */
-    public void resume(DownloadRequest request) {
+    void resume(DownloadRequest request) {
         boolean alreadyInQueue = false;
         for (DownloadRequest req : mDownloadQueueList) {
             if (request.getArticleId().equals(req.getArticleId())) {
@@ -110,10 +112,12 @@ public class DownloadRequestQueue {
             Log.d(TAG, "downloadQueue " + mDownloadQueue.size());
             if (request.isDownloadOnWiFi()) {
                 if (sIsConnectedToWifi) {
+                    request.setPriority(DownloadRequest.Priority.NORMAL);
                     mDownloadQueue.add(request);
                     mDownloadQueueList.add(request);
                 }
             } else {
+                request.setPriority(DownloadRequest.Priority.NORMAL);
                 mDownloadQueue.add(request);
                 mDownloadQueueList.add(request);
             }
