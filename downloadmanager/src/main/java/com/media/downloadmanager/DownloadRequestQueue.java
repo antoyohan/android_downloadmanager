@@ -51,7 +51,9 @@ public class DownloadRequestQueue {
     void start() {
         //stop();
         try {
-            mDownloadDispatcher.start();
+            if (!mDownloadDispatcher.isAlive()) {
+                mDownloadDispatcher.start();
+            }
         } catch (IllegalThreadStateException ex) {
             Log.d(TAG, "Thread Already Started");
         }
