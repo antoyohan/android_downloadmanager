@@ -120,6 +120,7 @@ public class DownloadDispatcher extends Thread {
                 getDbObject();
                 updateDownloadInProgress();
                 executeDownload(mRequest.getUrl());
+                mRealmInstance.close();
             } catch (InterruptedException e) {
                 Log.d(TAG, "Thread Interrupted");
                 if (mCurrentDownloadId != null && !mCurrentDownloadId.isEmpty()) {
